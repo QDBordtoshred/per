@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: blog
 title: Course Outlines
 image: /images/mario_animation.png
 hide: true
