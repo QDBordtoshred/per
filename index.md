@@ -187,6 +187,64 @@ hide: true
     mario.startResting();
   });
 
+   window.addEventListener("keydown", (event) => {
+    event.preventDefault();
+
+    if (event.key === "ArrowRight") {
+      if (event.repeat) {
+        mario.startCheering();
+      } else {
+        mario.startWalking();
+      }
+    } else if (event.key === "ArrowLeft") {
+      if (event.repeat) {
+        mario.stopAnimate();
+      } else {
+        mario.startPuffing();
+      }
+    } else if (event.key === "ArrowUp") {
+      // Add logic for going up
+      mario.startJumping();
+    }
+  });
+
+  window.addEventListener("touchstart", (event) => {
+    event.preventDefault();
+
+    const touchX = event.touches[0].clientX;
+    const touchY = event.touches[0].clientY;
+
+    if (touchX > window.innerWidth / 2) {
+      if (mario.currentSpeed === 0) {
+        mario.startWalking();
+      } else if (mario.currentSpeed === 3) {
+        mario.startRunning();
+      }
+    } else {
+      mario.startPuffing();
+    }
+
+    // Add logic for touch events to go up
+    if (touchY < window.innerHeight / 2) {
+      mario.startJumping();
+    }
+  });
+
+  // Add logic for arrow up key
+  window.addEventListener("keyup", (event) => {
+    if (event.key === "ArrowUp") {
+      mario.stopJumping();
+    }
+  });
+
+  // Add logic for touch end event
+  window.addEventListener("touchend", (event) => {
+    if (event.touches.length === 0) {
+      mario.stopJumping();
+    }
+  });
+
+
 </script>
 Investing in Your Technical Future
 
